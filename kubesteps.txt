@@ -24,3 +24,7 @@ metadata:
   generation: 1
   labels:
 *************
+
+#when all the pods are ready redirect service to localhost
+kubectl port-forward svc/<nameofsvc> 8981:80
+
