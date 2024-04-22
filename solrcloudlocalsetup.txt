@@ -9,6 +9,7 @@
 8. Go to Solr bin folder
 9. set Java path in solrin.cmd
 10. Start Solr by giving solr start - c -z localhost:2181
+   Go to browser, http://localhost:8983/solr
 11. update configuration in zookeeper
    solr zk upconfig -d ../server/solr/configsets/_default -n schemaless -z 127.0.0.1:2181
    copy solrconfig.xml from solr to zookeeper root folder
