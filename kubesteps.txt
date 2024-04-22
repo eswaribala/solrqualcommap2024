@@ -1,0 +1,26 @@
+https://blog.jermdavis.dev/posts/2022/solr-operator-kubernetes
+
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/master/deploy/static/provider/cloud/deploy.yaml
+helm repo add apache-solr https://solr.apache.org/charts
+helm repo update
+kubectl create -f https://solr.apache.org/operator/downloads/crds/v0.5.1/all-with-dependencies.yaml
+helm install solr-operator apache-solr/solr-operator --version 0.5.1
+
+helm install example-solr apache-solr/solr --version 0.5.1
+  --set image.tag=8.8.2
+  --set addressability.external.method=Ingress
+  --set addressability.external.domainName="ing.local.domain"
+  --set addressability.external.useExternalAddress="true"
+  --set ingressOptions.ingressClassName="nginx"
+
+kubectl get solrclouds -w
+kubectl edit ingress example-solrcloud-common
+*******
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx ***
+    nginx.ingress.kubernetes.io/backend-protocol: HTTP
+  creationTimestamp: "2022-06-23T20:40:25Z"
+  generation: 1
+  labels:
+*************
