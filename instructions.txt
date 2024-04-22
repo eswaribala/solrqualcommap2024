@@ -1,0 +1,183 @@
+create core
+
+solr create -c inventory -d qcinventory
+
+Go to docker container 
+
+solr create_collection -c reatil_collection
+
+#curl 'http://localhost:8981/solr/update/json?commit=true' --data-binary @books.json -H 'Content-type:application/json'
+
+#create collection
+
+http://localhost:8983/solr/admin/collections?action=CREATE&name=bookCollection&numShards=2&replicationFactor=1&wt=xml
+
+http://localhost:8983/solr/admin/collections?action=LIST
+
+
+http://localhost:8981/api/collections
+
+#create schema
+POST
+
+ http://localhost:8983/api/collections/employees/schema
+
+{
+    "add-field": [
+        {
+            "name": "name",
+            "type": "text_general",
+            "multiValued": false
+        },
+        {
+            "name": "department",
+            "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "designation",
+            "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "experience",
+            "type": "pint"
+        }
+    ]
+}
+
+
+
+#update schema
+
+http://localhost:8983/api/collections/employees/update
+
+
+[
+    {
+        "id": "emp-001",
+        "name": "Chris Nathan",
+        "department": "Dev",
+        "designation": "Analyst",
+        "experience": 7
+    },
+    {
+        "id": "emp-002",
+        "name": "Christina ",
+        "department": "Dev",
+        "designation": "Programmer",
+        "experience": 3
+    },
+    {
+        "id": "emp-003",
+        "name": "Naresh",
+        "department": "Marketing",
+        "designation": "Executive",
+        "experience": 2
+    }
+]
+
+
+#Commiting the Changes
+
+ http://localhost:8983/api/collections/employees/config
+
+
+#Executing Queries
+#List all employees
+http://localhost:8981/solr/employees/select?q=*%3A*
+http://localhost:8981/solr/employees/select?q=*
+
+#List all employees where department is ‘Dev’ (q=department:Dev)
+
+http://localhost:8981/solr/employees/select?q=department:Dev
+
+#List name field (fl) only employees where department is Dev
+
+http://localhost:8981/solr/employees/select?q=department:Dev&fl=name
+
+
+
+curl -X POST -H 'Content-type:application/json' --data-binary @users.json http://localhost:8981/solr/films/schema
+
+
+
+ http://localhost:8983/api/collections/users/schema
+
+{
+    "add-field": [
+       
+        {
+            "name": "name",
+            "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "username",
+            "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "email",
+             "type": "string",
+            "multiValued": false
+        },
+         {
+            "name": "address.street",
+             "type": "string",
+            "multiValued": false
+        },
+          {
+            "name": "address.suite",
+             "type": "string",
+            "multiValued": false
+        },
+          {
+            "name": "address.city",
+             "type": "string",
+            "multiValued": false
+        },
+          
+          {
+            "name": "address.geo.lat",
+             "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "address.geo.lng",
+             "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "phone",
+             "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "website",
+             "type": "string",
+            "multiValued": false
+        },
+        {
+            "name": "company.name",
+             "type": "string",
+            "multiValued": false
+        },
+         {
+            "name": "company.catchPhrase",
+             "type": "string",
+            "multiValued": false
+        },
+         {
+            "name": "company.bs",
+             "type": "string",
+            "multiValued": false
+        }
+    ]
+}
+
+
+git clone https://github.com/freedev/solrcloud-zookeeper-kubernetes.git
+
+cd solrcloud-zookeeper-kubernetes
+
