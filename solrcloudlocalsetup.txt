@@ -3,7 +3,7 @@
 3. keep them on Slorcloudlocal folder
 4. Extract zookeeper and solr
 5. Go to zookeeper conf and copy sample zookeeper conf to zoo.cfg
-6. Configure Java Path in zkserver.cmd as set Java="c:\\program files\\java\\jdk17"
+6. Configure Java Path in zkserver.cmd as set Java="c:\program files\java\jdk17"
    Configure zoo.cfg with data dir=<Any path>
 7. Run zkserver.cmd
 8. Go to Solr bin folder
