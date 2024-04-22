@@ -14,7 +14,7 @@
    Go to browser, http://localhost:8983/solr
 11. update configuration in zookeeper
    solr zk upconfig -d ../server/solr/configsets/_default -n schemaless -z 127.0.0.1:2181
-   copy solrconfig.xml from solr to zookeeper root folder
+   copy solr.xml from solr to zookeeper root folder
 
 12. create collection 
 solr create -c products -n schemaless -shards 1 -replicationFactor 2
