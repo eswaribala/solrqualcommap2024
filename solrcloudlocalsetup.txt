@@ -5,6 +5,8 @@
 5. Go to zookeeper conf and copy sample zookeeper conf to zoo.cfg
 6. Configure Java Path in zkserver.cmd as set Java="c:\program files\java\jdk17"
    Configure zoo.cfg with data dir=<Any path>
+   4lw.commands.whitelist=mntr,conf,ruok
+ 
 7. Run zkserver.cmd
 8. Go to Solr bin folder
 9. set Java path in solrin.cmd
