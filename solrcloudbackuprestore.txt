@@ -1,0 +1,17 @@
+
+****working url for backup******
+http://localhost:8981/solr/employees_shard1_replica_n1/replication?command=backup
+**************************
+http://localhost:8981/solr/employees_shard2_replica_n2/replication?command=backup
+check backup status
+http://localhost:8981/solr/employees_shard1_replica_n1/replication?command=details&wt=xml
+http://localhost:8981/solr/employees_shard2_replica_n2/replication?command=details&wt=xml
+
+restore api
+http://localhost:8981/solr/employees_shard1_replica_n1/replication?command=restore&name=backup
+http://localhost:8981/solr/employees_shard2_replica_n2/replication?command=restore&name=backup
+
+restore api status
+http://localhost:8981/solr/employees_shard1_replica_n1/replication?command=restorestatus&wt=xml
+http://localhost:8981/solr/employees_shard2_replica_n2/replication?command=restorestatus&wt=xml
+
