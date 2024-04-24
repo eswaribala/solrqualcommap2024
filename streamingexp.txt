@@ -15,6 +15,20 @@ on="emp_no"),over="hire_date",count(*))
 
 http://localhost:8981/solr/admin/collections?action=SPLITSHARD&collection=emp&shard=shard1&numSubShards=5&wt=xml
 
+innerJoin(
+        select(
+            search(employees,q=*:*, fl="emp_no,first_name,hire_date", sort="emp_no asc"),
+            emp_no as EmployeeNumber,
+            first_name as FirstName,
+            hire_date as HireDate),
+        select(
+            search(salaries,q=*:*, fl="emp_no,salary", sort="emp_no asc"),
+            emp_no as EmployeeNumberFK,
+            salary as Salary),       
+        on="EmployeeNumber=EmployeeNumberFK"
+    )
+
+
 facet(products,
 
             q="*:*",
