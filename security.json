@@ -9,4 +9,18 @@
    "permissions":[{"name":"security-edit",
       "role":"admin"}],
    "user-role":{"solr":"admin"}
-}}
+},
+
+
+  "auditlogging":{
+    "class": "solr.SolrLogAuditLoggerPlugin",
+    "async": true,
+    "blockAsync" : false,
+    "numThreads" : 2,
+    "queueSize" : 4096,
+    "eventTypes": ["REJECTED", "ANONYMOUS_REJECTED", "UNAUTHORIZED", "COMPLETED", "ERROR"]
+  }
+
+
+
+}
