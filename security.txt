@@ -1,0 +1,1 @@
+solr zk cp security.json zk:/security.json -z localhost:2181
