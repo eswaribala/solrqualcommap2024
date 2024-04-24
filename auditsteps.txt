@@ -1,0 +1,10 @@
+1. create security.json
+2. add audit plugin
+3 start the zookeeper
+4. start the solar cloud
+5. run security cmd to cp security.json
+6. check solar running
+7. run solar exporter from prometheus exporter
+8. modify promethues.yml file with instance host and port
+9. start prometheus
+10. observe logs
