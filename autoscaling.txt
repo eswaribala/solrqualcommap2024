@@ -1,0 +1,19 @@
+curl -X POST "http://localhost:8983/solr/admin/autoscaling" --data-binary \
+'{
+  "set-cluster-policy": [
+    { "replica": "2","shard": "#EACH", "node": "#ANY" }
+  ]
+}'
+
+
+curl -X POST "http://localhost:8983/solr/admin/autoscaling" --data-binary \
+'{
+  "set-trigger": {
+    "name": "node_added_trigger",
+    "event": "nodeAdded",
+    "waitFor": "5s",
+    "preferredOperation": "ADDREPLICA"
+  }
+}'
+
+
