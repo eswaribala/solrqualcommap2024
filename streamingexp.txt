@@ -1,0 +1,25 @@
+search(employees,qt="/export",q="*:*", fl="emp_no,first_name",sort="emp_no asc")
+
+search(products,qt="/export",q="*:*", fl="id,name_s",sort="id asc")
+search(employees,qt="/export",q="*:*", fl="emp_no,first_name",sort="first_name asc")
+
+
+rollup(search(products,qt="/export",q="*:*", fl="id,name_s",sort="id asc"),over=name_s,count(*))
+
+
+#join query
+
+rollup(hashJoin(search(emp, q=*:*, fl="emp_no,first_name,hire_date",qt="/export", sort="emp_no asc"),
+hashed=search(salaries, q=*:*, fl="emp_no,salary",qt="/export", sort="emp_no asc"),
+on="emp_no"),over="hire_date",count(*))
+
+http://localhost:8981/solr/admin/collections?action=SPLITSHARD&collection=emp&shard=shard1&numSubShards=5&wt=xml
+
+facet(products,
+
+            q="*:*",
+            buckets="color_s",
+            bucketSorts="count(*) desc",
+            bucketSizeLimit=1000,
+            count(*),
+            sum(price_i))
